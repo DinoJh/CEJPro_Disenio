@@ -1,24 +1,27 @@
-# Cobros: registro directo de pagos recibidos
+# Cobros — Registro de pagos recibidos
 
-## Flujo vigente
-1. Seleccionar al cliente: documento visible o código estable Cliente 001 para distinguir nombres repetidos.
-2. Elegir un expediente o Sin expediente.
-3. Pulsar Registrar pago y anotar concepto, importe, moneda y medio.
+## Flujo final
 
-No se exige crear una deuda previa. El concepto predeterminado es Otro y muestra Motivo del pago. También hay honorarios, consulta, asesoría, redacción de escritos y representación en audiencia. El medio predeterminado es Efectivo.
+1. Seleccionar un cliente por nombre y documento, o por su código estable Cliente 001.
+2. Elegir un expediente asociado o Sin expediente para servicios generales.
+3. Consultar el historial o pulsar Registrar pago.
 
-La fecha se carga con el día actual y está dentro de Adicionales, junto con Notas. Las notas no son obligatorias.
+El formulario comienza con Importe recibido y Moneda en la misma fila. El importe es obligatorio y la moneda predeterminada es Soles. Medio de pago aparece debajo, con Efectivo seleccionado.
 
-## Historial y conservación
-Los pagos nuevos se guardan por separado de las deudas anteriores, sin crear movimientos duplicados. Los registros previos siguen visibles y editables. Las filas permiten editar y eliminar con confirmación.
+Una tarjeta agrupa Concepto y Motivo del pago. Concepto ofrece honorarios, consulta, asesoría, escritos, audiencia y Otro. Otro es la selección inicial y muestra un motivo libre. El motivo puede dejarse vacío y el pago se registra con el concepto Otro.
 
-Los filtros permiten buscar por concepto, moneda y tipo de movimiento. Los importes de soles y dólares se muestran por separado. El saldo anterior por cobrar solo se muestra cuando existe; los pagos recibidos aparecen en verde.
+Adicionales contiene Fecha, precargada con el día actual, y Notas. Los pagos pueden registrarse para clientes sin expedientes asociados.
 
-Los datos están aislados por espacio de trabajo. El lector solo consulta. Los pagos son registros locales del prototipo y no comprobantes tributarios.
+## Historial
 
-## Referencias de la exploración inicial
-- https://support.freshbooks.com/hc/en-us/articles/115015407988-How-do-I-use-my-dashboard
-- https://support.freshbooks.com/hc/en-us/articles/216631328-How-do-I-create-an-invoice
-- https://central.xero.com/s/article/Sales-dashboard
+La tabla muestra fecha, concepto, medio e importe. Los ingresos aparecen en verde. Las acciones de fila permiten editar o eliminar con confirmación. El buscador y los filtros por concepto y moneda ayudan a consultar el historial.
 
-El flujo final se simplificó según las indicaciones del usuario.
+Los totales de soles y dólares se muestran por separado. Los registros se aíslan por espacio de trabajo y el rol Lector permite consultarlos.
+
+## Archivos
+
+- `collections.js` implementa las pantallas y formularios.
+- `received-payments.js` guarda los pagos nuevos.
+- `billing-data.js` permite recuperar y corregir pagos guardados en el formato anterior, además de proporcionar utilidades de importes y fechas.
+- `collections.css` define el diseño de la bandeja de pagos.
+- `payment-table.css` conserva los estilos compartidos de las pestañas del cliente y la tabla.

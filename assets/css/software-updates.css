@@ -1,0 +1,102 @@
+/* Documentos del expediente: tabla con el mismo estilo del listado de casos. */
+.detail-documents-table { border-top: 1px solid var(--line); margin-top: 6px; }
+.detail-documents-table .cases-table th.col-check { width: 46px; padding-left: 20px; padding-right: 0; }
+.detail-documents-table .cases-table td.col-check { padding-left: 20px; padding-right: 0; }
+.detail-documents-table .cases-table th.col-size { width: 80px; }
+.detail-documents-table .cases-table th.col-date { width: 104px; }
+.detail-documents-table .cases-table th.col-actions { width: 150px; }
+.detail-documents-table .cases-table th:first-child:not(.col-check) { width: auto; }
+.detail-document-folder { display: block; margin: 2px 0 0 28px; font-size: 11px; color: var(--muted); font-weight: 400; }
+.detail-bulk-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 24px 12px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--accent-soft); font-size: 13px; }
+.detail-bulk-bar label { display: flex; align-items: center; gap: 8px; color: var(--muted); }
+.detail-bulk-bar select { height: 34px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); font: inherit; padding: 0 8px; }
+.detail-bulk-bar .cases-primary { height: 34px; padding: 0 14px; }
+.cases-title-cell .detail-document-title { display: flex; align-items: center; gap: 10px; overflow-wrap: anywhere; }
+.cases-title-cell .detail-document-title .detail-document-icon { flex: none; width: 18px; height: 18px; }
+@media (max-width: 760px) { .detail-documents-table .cases-table th { width: auto !important; } }
+
+/* Partes e involucrados junto a «Organización del caso» (mismo patrón de dos columnas del resumen). */
+.detail-summary-side .detail-summary-note .detail-party-list { padding: 0 0 20px; }
+.detail-summary-side .detail-summary-note .detail-party { padding-left: 0; padding-right: 0; }
+.detail-summary-side .detail-summary-note .detail-card-heading { align-items: center; gap: 12px; flex-wrap: wrap; }
+
+/* Botón con indicador de carga mientras se envía (p. ej. invitaciones por correo). */
+.btn-with-spinner { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 104px; }
+.btn-spinner { width: 14px; height: 14px; border: 2px solid #ffffff66; border-top-color: #fff; border-radius: 50%; animation: btn-spin 0.7s linear infinite; }
+@keyframes btn-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .btn-spinner { animation-duration: 2s; } }
+
+/* Estado de actualización de la casilla. */
+.sinoe-status { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 12px 22px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+.sinoe-status p { margin: 0; line-height: 1.7; }
+.sinoe-status .is-limit { color: var(--accent-text); font-weight: 600; }
+.sinoe-status-wait { color: var(--ink); background: var(--accent-soft); border-radius: 8px; padding: 10px 14px; }
+.sinoe-status-new { color: var(--accent-text); font-weight: 600; }
+.sinoe-connect-note { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+.sinoe-table td.sinoe-date span, .sinoe-table td.sinoe-date small { display: block; white-space: nowrap; }
+.sinoe-table td.sinoe-date small { color: var(--muted); font-size: 11px; }
+.sinoe-folder span { overflow-wrap: anywhere; font-size: 12px; }
+
+/* La lista de carpetas no crece sin fin: desplaza dentro de su columna. */
+/* La columna de carpetas mide lo mismo que la tabla: la lista se desplaza por dentro. */
+.sinoe-layout, .sinoe-layout:has(.sinoe-main > .clients-empty) { min-height: 560px; }
+.sinoe-folders { display: flex; flex-direction: column; overflow: hidden; contain: size; }
+.sinoe-folders > :not(nav) { flex: none; }
+.sinoe-folders nav { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding-right: 4px; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+@media (max-width: 1050px) { .sinoe-layout { min-height: 0; } .sinoe-folders { contain: none; } .sinoe-folders nav { flex: none; max-height: 260px; } }
+
+.sinoe-unlink { flex: none; margin-top: 2px; }
+
+.sinoe-docs-pending { color: var(--muted); font-size: 12px; cursor: help; }
+.sinoe-docs-note { padding: 0 24px 18px; }
+
+/* Lista de anexos: misma estructura que SINOE (aviso del consolidado + tabla), con los colores de CEJ PRO. */
+.sinoe-annex-dialog { width: min(900px, calc(100% - 32px)); }
+.sinoe-annex-dialog .cases-dialog-heading { background: var(--primary); border-bottom: 0; border-radius: 12px 12px 0 0; }
+.sinoe-annex-dialog .cases-dialog-heading h2, .sinoe-annex-dialog .cases-icon-button { color: #fff; }
+.annex-panel { padding: 18px 24px 8px; display: grid; gap: 16px; }
+.annex-note { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 16px; border: 1px solid color-mix(in srgb, #e0a63a 55%, var(--line)); border-radius: 8px; background: color-mix(in srgb, #e0a63a 12%, var(--surface)); }
+.annex-note p { margin: 2px 0; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.annex-note .annex-note-title { color: #c0612b; font-weight: 700; font-size: 13px; }
+.annex-table-wrap { overflow-x: auto; }
+.annex-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+.annex-table th { background: var(--header); color: var(--accent-text); font-weight: 600; padding: 12px 10px; border: 1px solid var(--line); }
+.annex-table td { padding: 12px 10px; border: 1px solid var(--line); color: var(--ink); }
+.annex-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.annex-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--accent-text); font: inherit; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.annex-btn:hover { background: var(--hover); }
+.annex-btn.is-light { font-weight: 500; color: var(--muted); }
+.annex-btn:disabled { opacity: 0.6; cursor: default; }
+button.sinoe-open-documents { background: transparent; border: 0; cursor: pointer; }
+@media (max-width: 680px) { .annex-note { flex-direction: column; align-items: stretch; } }
+
+/* Alto fijo y mediano para la tabla: no cambia al pasar de una carpeta a otra; si hay más filas, se desplaza por dentro. */
+.sinoe-organize { display: flex; gap: 10px; }
+.sinoe-table-wrap { flex: none; height: 520px; overflow: auto; }
+.sinoe-table thead th { position: sticky; top: 0; z-index: 1; }
+.sinoe-main .clients-empty { flex: none; height: 538px; display: grid; place-content: center; justify-items: center; }
+@media (max-width: 760px) { .sinoe-table-wrap, .sinoe-main .clients-empty { height: auto; max-height: 520px; } .sinoe-organize { flex-wrap: wrap; } }
+
+.sinoe-secure-note { margin: 0; text-align: center; font-size: 11px; color: var(--muted); opacity: 0.8; }
+
+/* Las columnas de expedientes no imponen sus porcentajes a los documentos. */
+.detail-documents-table .cases-table th:nth-child(2) { width: auto; }
+.detail-documents-table .detail-toolbar-actions { flex-wrap: nowrap; }
+.detail-documents-table .cases-table td:not(.cases-title-cell) { white-space: nowrap; }
+@media (max-width: 600px) {
+  .detail-documents-table .cases-table { display: table; min-width: 660px; }
+  .detail-documents-table .cases-table thead { display: table-header-group; }
+  .detail-documents-table .cases-table tbody { display: table-row-group; }
+  .detail-documents-table .cases-table tr { display: table-row; }
+  .detail-documents-table .cases-table td,
+  .detail-documents-table .cases-table th { display: table-cell; }
+  .detail-documents-table .cases-table th.col-check { width: 46px !important; }
+  .detail-documents-table .cases-table th:nth-child(2) { width: 280px !important; }
+  .detail-documents-table .cases-table th.col-size { width: 80px !important; }
+  .detail-documents-table .cases-table th.col-date { width: 104px !important; }
+  .detail-documents-table .cases-table th.col-actions { width: 150px !important; }
+  .detail-documents-table .cases-table td.cases-title-cell { padding: 12px; }
+  .detail-documents-table .cases-table td::before { display: none; }
+  .detail-bulk-bar { margin: 0 12px 12px; }
+}

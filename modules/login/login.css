@@ -1,0 +1,31 @@
+.login-page { position: relative; overflow: hidden; min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; color: #f4ece4; font-family: var(--font); background: radial-gradient(700px 500px at 12% 20%, #4a1458aa, transparent 70%), radial-gradient(700px 520px at 90% 85%, #0f4a44aa, transparent 70%), radial-gradient(900px 600px at 50% 40%, #4a2608 0%, #2e1700 65%, #241100 100%); }
+.login-deco { position: absolute; pointer-events: none; opacity: 0.22; }
+.login-deco.d1 { width: 460px; height: 460px; left: -90px; bottom: -110px; transform: rotate(-12deg); color: #e0a63a; }
+.login-deco.d2 { width: 300px; height: 300px; right: 6%; top: 6%; transform: rotate(10deg); color: #c75a78; }
+.login-deco.d3 { width: 300px; height: 300px; right: 2%; bottom: -40px; transform: rotate(8deg); color: #a77bd0; }
+.login-deco.d4 { width: 270px; height: 270px; left: 7%; top: 6%; transform: rotate(-8deg); color: #4fb8a8; }
+.login-note { position: absolute; font-family: "Caveat", "Segoe Script", cursive; font-size: 44px; line-height: 1.05; text-align: center; pointer-events: none; transform: rotate(-7deg); text-shadow: 0 2px 12px #0006; }
+.login-note.n1 { right: 25%; top: 12%; color: #c9a0e6; }
+.login-note.n2 { left: 21%; bottom: 13%; color: #f0b84e; transform: rotate(-6deg); }
+.login-note.n3 { right: 9%; bottom: 31%; transform: rotate(-5deg); color: #f29bb4; font-size: 34px; }
+.login-card { position: relative; z-index: 1; width: 100%; max-width: 440px; background: #1f1a1ad9; backdrop-filter: blur(10px); border: 1px solid #ffffff1f; border-radius: 22px; padding: 0 40px 36px; box-shadow: 0 30px 80px #0008; display: grid; gap: 14px; text-align: center; }
+.login-logo { width: 132px; height: 132px; margin: -66px auto 4px; border-radius: 50%; background: #fff; border: 5px solid #2a2222; box-shadow: 0 10px 30px #0006; object-fit: cover; }
+.login-card h1 { margin: 0; font-size: 30px; line-height: 1.2; letter-spacing: -0.01em; color: #f4ece4; }
+.login-card h1 span { color: #e0a63a; }
+.login-lead { margin: 0 0 10px; color: #c9bcb0; font-size: 15px; line-height: 1.55; }
+.login-google { display: flex; align-items: center; justify-content: center; gap: 12px; height: 50px; padding: 0 20px; border-radius: 12px; background: #fff; color: #1f1f1f; font-size: 15px; font-weight: 600; text-decoration: none; white-space: nowrap; box-shadow: 0 6px 20px #0004; }
+.login-google svg { flex: none; width: 20px; height: 20px; }
+.login-google:hover { background: #f3eee9; }
+@media (max-width: 900px) { .login-deco.d1, .login-deco.d4 { width: 240px; height: 240px; } .login-deco.d2, .login-deco.d3, .login-note { display: none; } }
+@media (max-width: 520px) { .login-card { padding: 0 22px 28px; } }
+
+
+.login-deco svg { width: 100%; height: 100%; stroke-width: 1; }
+.login-google { border: 0; width: 100%; font-family: inherit; }
+body.login-visible { margin: 0; }
+body.login-visible > .sidebar, body.login-visible > .app-shell,
+body.login-visible > .skip-link, body.login-visible > .backdrop,
+body.login-visible > .workspace-switcher, body.login-visible > .workspace-role-banner { display: none !important; }
+body.login-visible { overflow-x: hidden; }
+.login-page[hidden] { display: none; }
+@media (max-height: 550px) { .login-page { padding-top: 90px; padding-bottom: 24px; } }

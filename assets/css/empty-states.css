@@ -1,9 +1,73 @@
 /* Estados vacíos con una jerarquía visual ligera y uniforme. */
-:is(.clients-empty,.cases-empty,.detail-empty,.home-empty,.cal-no-events,.cal-day-empty,.billing-case-empty){display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);text-align:center}
-:is(.clients-empty,.cases-empty,.detail-empty,.home-empty,.cal-no-events,.billing-case-empty)>:is(p,h2,h3,strong,span:not(.icon)){font:400 13px/1.7 var(--font);color:var(--muted);margin:0;max-width:360px}
-:is(.clients-empty,.cases-empty,.detail-empty,.home-empty,.cal-no-events,.cal-day-empty,.billing-case-empty)>.icon{display:inline-flex;width:30px;height:30px;flex:none;color:var(--muted);margin:0}
-:is(.clients-empty,.cases-empty,.detail-empty,.billing-case-empty){padding:40px 24px}
-.cal-day-empty{padding:18px 8px}.cal-day-empty>p{font:400 12px/1.7 var(--font);margin:0}.cal-day-empty>.icon,.home-day-empty>.icon{width:23px;height:23px;color:var(--muted)}
+:is(
+  .clients-empty,
+  .cases-empty,
+  .detail-empty,
+  .home-empty,
+  .cal-no-events,
+  .cal-day-empty
+) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+:is(.clients-empty, .cases-empty, .detail-empty, .home-empty, .cal-no-events)
+  > :is(p, h2, h3, strong, span:not(.icon)) {
+  font: 400 13px/1.7 var(--font);
+  color: var(--muted);
+  margin: 0;
+  max-width: 360px;
+}
+:is(
+    .clients-empty,
+    .cases-empty,
+    .detail-empty,
+    .home-empty,
+    .cal-no-events,
+    .cal-day-empty
+  )
+  > .icon {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  color: var(--muted);
+  margin: 0;
+}
+:is(.clients-empty, .cases-empty, .detail-empty) {
+  padding: 40px 24px;
+}
+.cal-day-empty {
+  padding: 18px 8px;
+}
+.cal-day-empty > p {
+  font: 400 12px/1.7 var(--font);
+  margin: 0;
+}
+.cal-day-empty > .icon,
+.home-day-empty > .icon {
+  width: 23px;
+  height: 23px;
+  color: var(--muted);
+}
 /* El control de grupo no representa una segunda opción seleccionada. */
-.sidebar .nav-group-toggle,.sidebar .nav-group-toggle:hover,.sidebar .nav-group-toggle.active{background:transparent;color:var(--side-muted);box-shadow:none}
-.sidebar .nav-group-toggle .icon{color:inherit}.sidebar .nav-group-toggle::before{display:none}.sidebar .nav-group-toggle:hover .nav-chevron{background:transparent}
+.sidebar .nav-group-toggle,
+.sidebar .nav-group-toggle:hover,
+.sidebar .nav-group-toggle.active {
+  background: transparent;
+  color: var(--side-muted);
+  box-shadow: none;
+}
+.sidebar .nav-group-toggle .icon {
+  color: inherit;
+}
+.sidebar .nav-group-toggle::before {
+  display: none;
+}
+.sidebar .nav-group-toggle:hover .nav-chevron {
+  background: transparent;
+}

@@ -1,29 +1,222 @@
 /* Perfil y preferencias con la misma anchura y una sola columna. */
-body:has(:is(#profileModule,#settingsModule,#supportModule):not([hidden])) .content{max-width:760px}
-.account-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.profile-overview{display:flex;align-items:center;gap:16px;padding:26px;border-bottom:1px solid var(--line)}
-.profile-avatar{display:grid;place-items:center;flex:none;width:54px;height:54px;border-radius:50%;background:var(--accent-soft);color:var(--accent-text);font-size:18px;font-weight:600}
-.profile-overview h2{font-size:17px;font-weight:600;overflow-wrap:anywhere}.profile-overview p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6}
-.account-fields{display:flex;flex-direction:column;gap:19px;padding:26px}.account-fields label{display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--ink)}
-.account-fields :is(input,select){width:100%;min-width:0;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);padding:12px;font:14px var(--font)}
-.account-fields :is(input,select):focus-visible{outline:2px solid var(--accent-text);outline-offset:2px}
-.account-fields input::placeholder{color:var(--muted)}
-.account-card-footer{display:flex;justify-content:flex-end;align-items:center;gap:18px;padding:18px 26px;border-top:1px solid var(--line)}
-.account-feedback{font-size:13px;color:var(--accent-text);line-height:1.6;margin-right:auto}.account-feedback:empty{display:none}.account-feedback.is-error{color:var(--accent-text)}
-.account-setting-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 26px;border-bottom:1px solid var(--line)}
-.account-setting-description{display:flex;align-items:center;gap:14px;min-width:0}.account-setting-description>.icon{color:var(--muted);width:21px;height:21px;flex:none}.account-setting-description h2{font-size:14px;font-weight:500}.account-setting-description p{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;overflow-wrap:anywhere}.account-setting-row>.cases-secondary{flex:none;font-size:12px}
-@media(max-width:600px){.account-fields,.profile-overview,.account-setting-row{padding:21px}.account-card-footer{padding:17px 21px;flex-wrap:wrap}.account-feedback{flex-basis:100%}.account-setting-row{gap:12px}}
+body:has(:is(#profileModule, #settingsModule, #supportModule):not([hidden]))
+  .content {
+  max-width: 760px;
+}
+.account-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.profile-overview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 26px;
+  border-bottom: 1px solid var(--line);
+}
+.profile-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 18px;
+  font-weight: 600;
+}
+.profile-overview h2 {
+  font-size: 17px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.profile-overview p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+.account-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  padding: 26px;
+}
+.account-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink);
+}
+.account-fields :is(input, select) {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 12px;
+  font: 14px var(--font);
+}
+.account-fields :is(input, select):focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+.account-fields input::placeholder {
+  color: var(--muted);
+}
+.account-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 26px;
+  border-top: 1px solid var(--line);
+}
+.account-feedback {
+  font-size: 13px;
+  color: var(--accent-text);
+  line-height: 1.6;
+  margin-right: auto;
+}
+.account-feedback:empty {
+  display: none;
+}
+.account-feedback.is-error {
+  color: var(--accent-text);
+}
+.account-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 26px;
+  border-bottom: 1px solid var(--line);
+}
+.account-setting-description {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.account-setting-description > .icon {
+  color: var(--muted);
+  width: 21px;
+  height: 21px;
+  flex: none;
+}
+.account-setting-description h2 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.account-setting-description p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.account-setting-row > .cases-secondary {
+  flex: none;
+  font-size: 12px;
+}
+@media (max-width: 600px) {
+  .account-fields,
+  .profile-overview,
+  .account-setting-row {
+    padding: 21px;
+  }
+  .account-card-footer {
+    padding: 17px 21px;
+    flex-wrap: wrap;
+  }
+  .account-feedback {
+    flex-basis: 100%;
+  }
+  .account-setting-row {
+    gap: 12px;
+  }
+}
 
-.profile-overview{padding:28px;border-bottom:0;background:linear-gradient(115deg,var(--accent-soft),var(--surface) 80%)}
-.profile-avatar{width:58px;height:58px;border:2px solid var(--surface);box-shadow:0 2px 8px #0000000c}
-.profile-google-account{display:flex;align-items:center;gap:13px;margin:0 26px;padding:18px 0;border-bottom:1px solid var(--line)}
-.profile-google-logo{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:10px;background:#fff;border:1px solid #e1e4e8}
-.profile-google-logo svg{width:22px;height:22px}
-.profile-google-account>div{flex:1;min-width:0}
-.profile-google-account h3{font-size:13px;font-weight:500}
-.profile-google-account p{font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px}
-.profile-google-badge{font-size:11px;color:var(--muted);padding:5px 8px;border:1px solid var(--line);border-radius:20px;white-space:nowrap}
-@media(max-width:520px){.profile-google-account{margin:0 21px;flex-wrap:wrap}.profile-google-badge{margin-left:51px}}
+.profile-overview {
+  padding: 28px;
+  border-bottom: 0;
+  background: linear-gradient(115deg, var(--accent-soft), var(--surface) 80%);
+}
+.profile-avatar {
+  width: 58px;
+  height: 58px;
+  border: 2px solid var(--surface);
+  box-shadow: 0 2px 8px #0000000c;
+}
+.profile-google-account {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 0 26px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.profile-google-logo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e1e4e8;
+}
+.profile-google-logo svg {
+  width: 22px;
+  height: 22px;
+}
+.profile-google-account > div {
+  flex: 1;
+  min-width: 0;
+}
+.profile-google-account h3 {
+  font-size: 13px;
+  font-weight: 500;
+}
+.profile-google-account p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.profile-google-badge {
+  font-size: 11px;
+  color: var(--muted);
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  white-space: nowrap;
+}
+@media (max-width: 520px) {
+  .profile-google-account {
+    margin: 0 21px;
+    flex-wrap: wrap;
+  }
+  .profile-google-badge {
+    margin-left: 51px;
+  }
+}
 
-.profile-google-badge{display:inline-flex;align-items:center;gap:5px;color:#237449;background:#2374490d;border-color:#23744930}
-:root[data-theme="oscuro"] .profile-google-badge{color:#8ed9ac;background:#78d6a112;border-color:#78d6a138}
+.profile-google-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #237449;
+  background: #2374490d;
+  border-color: #23744930;
+}
+:root[data-theme="oscuro"] .profile-google-badge {
+  color: #8ed9ac;
+  background: #78d6a112;
+  border-color: #78d6a138;
+}

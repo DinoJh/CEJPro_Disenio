@@ -1,41 +1,808 @@
 /* Bandeja agrupada por expediente, en una superficie continua. */
-.sinoe-panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}.sinoe-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 24px;border-bottom:1px solid var(--line)}.sinoe-count{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.sinoe-count strong{font-size:15px;font-weight:600}.sinoe-count span{font-size:12px;color:var(--accent-text)}.sinoe-layout{display:grid;grid-template-columns:210px minmax(0,1fr);min-height:430px}.sinoe-folders{border-right:1px solid var(--line);padding:24px 12px}.sinoe-folders h2{font-size:11px;font-weight:500;color:var(--muted);padding:0 10px 18px}.sinoe-folders nav{display:flex;flex-direction:column;gap:5px}.sinoe-folder{width:100%;display:flex;align-items:center;gap:12px;text-align:left;padding:12px 10px;background:transparent;color:var(--muted);border-radius:5px;font-size:12px}.sinoe-folder>span{flex:1;min-width:0;overflow-wrap:anywhere}.sinoe-folder small{font-size:11px}.sinoe-folder:hover,.sinoe-folder.is-active{background:var(--hover);color:var(--accent-text)}.sinoe-folder.is-active{font-weight:600}.sinoe-main{min-width:0}.sinoe-filters{padding:22px;display:flex;gap:12px;border-bottom:1px solid var(--soft-line)}.sinoe-filters .icon{width:16px;height:16px;color:var(--muted)}.sinoe-notifications{margin:0;padding:0;list-style:none}.sinoe-notifications li{display:flex;align-items:flex-start;gap:12px;padding:23px 22px;border-bottom:1px solid var(--soft-line)}.sinoe-notifications li:hover{background:var(--paper)}.sinoe-read-dot{width:6px;height:6px;border-radius:50%;background:var(--primary);flex:none;margin-top:7px}.sinoe-read-dot.is-read{background:transparent}.sinoe-notification-link{flex:1;min-width:0}.sinoe-notification-link strong{display:block;font-size:14px;line-height:1.6;font-weight:400;overflow-wrap:anywhere}.is-unread .sinoe-notification-link strong{font-weight:600}.sinoe-notification-link:hover strong{color:var(--accent-text)}.sinoe-notification-link span,.sinoe-notification-link small{display:block;font-size:11px;color:var(--muted);margin-top:7px;line-height:1.8;overflow-wrap:anywhere}.sinoe-row-meta{display:flex;flex-direction:column;gap:9px;text-align:right;flex:none}.sinoe-row-meta time,.sinoe-row-meta>span{font-size:11px;color:var(--muted)}.sinoe-row-meta>span:empty{display:none}.sinoe-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:26px}.sinoe-heading>div{min-width:0}.sinoe-heading>button{flex:none}.sinoe-heading h1{font-size:30px;margin:18px 0 10px;overflow-wrap:anywhere}.sinoe-heading p{font-size:12px;color:var(--muted)}.sinoe-detail-top{padding:20px 26px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.sinoe-read-state{color:var(--accent-text);font-size:12px}.sinoe-info{margin:0;padding:0 26px}.sinoe-info>div{display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;padding:23px 0;border-bottom:1px solid var(--soft-line)}.sinoe-info dt{font-size:12px;color:var(--muted)}.sinoe-info dd{margin:0;font-size:13px;line-height:1.8;overflow-wrap:anywhere}.sinoe-info a{color:var(--accent-text)}.sinoe-info small{display:block;color:var(--muted);font-size:11px;margin-top:5px}.sinoe-doc-heading{padding:24px 26px 18px;display:flex;align-items:center;justify-content:space-between;gap:18px}.sinoe-doc-heading h2{font-size:14px;font-weight:600}.sinoe-doc-heading h2 span{font-size:11px;color:var(--muted);margin-left:8px}.sinoe-documents{list-style:none;margin:0;padding:0 26px 16px}.sinoe-documents li{display:flex;align-items:center;gap:14px;padding:16px 0;border-top:1px solid var(--soft-line)}.sinoe-documents .icon{color:var(--accent-text)}.sinoe-documents li>span:nth-child(2){flex:1;min-width:0}.sinoe-documents strong{font-size:13px;font-weight:500;overflow-wrap:anywhere}.sinoe-documents small{font-size:11px;color:var(--muted);display:block;margin-top:6px}
-@media(max-width:1000px){.sinoe-layout{grid-template-columns:minmax(0,1fr)}.sinoe-folders{border-right:0;border-bottom:1px solid var(--line);padding:18px}.sinoe-folders nav{flex-direction:row;flex-wrap:wrap}.sinoe-folder{width:auto}.sinoe-folders h2{padding-bottom:10px}}
-@media(max-width:680px){.sinoe-toolbar{padding:18px;align-items:flex-start;flex-wrap:wrap}.sinoe-filters{padding:18px;flex-direction:column}.sinoe-filters select{max-width:none;width:100%}.sinoe-notifications li{padding:20px 18px;flex-wrap:wrap}.sinoe-notification-link{flex-basis:calc(100% - 20px)}.sinoe-row-meta{flex-direction:row;align-items:center;flex-wrap:wrap;gap:15px;margin-left:18px}.sinoe-heading{align-items:flex-start;flex-direction:column}.sinoe-info{padding:0 20px}.sinoe-info>div{grid-template-columns:1fr;gap:8px}.sinoe-detail-top,.sinoe-doc-heading{padding:20px}.sinoe-documents{padding:0 20px 15px}.sinoe-documents li{flex-wrap:wrap}.sinoe-documents button{margin-left:34px}}
-
-/* Conexión antes de la bandeja y carpetas personales. */
-.sinoe-connect{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:38px;gap:50px;align-items:start}.sinoe-connect-intro{padding:8px 0}.sinoe-connect-icon{width:44px;height:44px;padding:10px;color:var(--accent-text);background:var(--accent-soft);border-radius:10px;margin-bottom:24px}.sinoe-connect-intro h2{font:600 27px/1.4 var(--font);margin-bottom:15px}.sinoe-connect-intro p{font-size:14px;line-height:1.9;color:var(--muted);max-width:320px;margin-bottom:22px}.sinoe-connect-form{display:flex;flex-direction:column;gap:19px}.sinoe-connect-form>label{display:flex;flex-direction:column;gap:9px;font-size:13px}.sinoe-connect-form input{width:100%;min-width:0;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:13px var(--font);padding:12px}.sinoe-connect-form input:focus{outline:2px solid var(--gold);outline-offset:1px}.sinoe-password{display:flex;align-items:center;gap:8px}.sinoe-password button{font-size:11px;color:var(--accent-text);background:transparent;padding:8px 0}.sinoe-mailbox-actions{display:flex;align-items:center;gap:18px}.sinoe-mailbox-actions>.cases-secondary{font-size:12px}.sinoe-folder-heading{padding:23px 22px 0;display:flex;align-items:center;justify-content:space-between;gap:18px}.sinoe-folder-heading h2{font-size:15px;font-weight:500;overflow-wrap:anywhere}.sinoe-folder-heading>span{font-size:10px;color:var(--muted);white-space:nowrap}.sinoe-move-label select{font:11px var(--font);background:var(--surface);color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:7px;max-width:155px}.sinoe-move-label select:focus-visible{outline:2px solid var(--gold);outline-offset:1px}#organizeNotificationDialog textarea{width:100%;max-width:100%;resize:vertical;background:var(--paper);border:1px solid var(--line);border-radius:6px;color:var(--ink);padding:11px;font:13px/1.9 var(--font)}#organizeNotificationDialog textarea:focus{outline:2px solid var(--gold);outline-offset:1px}.sinoe-documents li>a{flex:none}.sinoe-count{min-width:0}
-@media(max-width:900px){.sinoe-connect{gap:28px;padding:28px}.sinoe-mailbox-actions{gap:10px;flex-wrap:wrap}.sinoe-folder-heading{padding:20px 18px 0}}
-@media(max-width:680px){.sinoe-connect{grid-template-columns:1fr;gap:24px;padding:24px}.sinoe-connect-intro h2{font-size:25px}.sinoe-connect-intro p{max-width:none}.sinoe-connect-icon{margin-bottom:17px}.sinoe-mailbox-actions{width:100%}.sinoe-row-meta{align-items:center}.sinoe-documents li>a:last-child{margin-left:0}.sinoe-folder-heading{align-items:flex-start}}
-
-.sinoe-account-label{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;font-weight:400;color:var(--muted)}
-
-/* Bandeja tabular siguiendo los campos de SINOE. */
-.sinoe-layout{grid-template-columns:210px minmax(0,1fr)}.sinoe-table-tools{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line)}.sinoe-table-tools>span{font-size:11px;color:var(--muted)}.sinoe-table-tools select{background:var(--surface);color:var(--ink);font:12px var(--font);padding:8px 10px;border:1px solid var(--line);border-radius:5px;max-width:180px}.sinoe-table-tools select:disabled{opacity:.45}.sinoe-table-wrap{overflow-x:auto}.sinoe-table{width:100%;min-width:810px;border-collapse:collapse;table-layout:fixed;text-align:center}.sinoe-table th{background:var(--header);color:var(--muted);font-size:11px;font-weight:600;line-height:1.6;padding:12px 6px;border-bottom:1px solid var(--line);border-right:1px solid var(--soft-line)}.sinoe-table td{padding:20px 7px;font-size:12px;line-height:1.7;border-bottom:1px solid var(--soft-line);border-right:1px solid var(--soft-line);color:var(--muted);vertical-align:middle;overflow-wrap:anywhere}.sinoe-table tbody tr:last-child td{border-bottom:0}.sinoe-table th:last-child,.sinoe-table td:last-child{border-right:0}.sinoe-table th:first-child{width:30px}.sinoe-table th:nth-child(2){width:35px}.sinoe-table th:nth-child(3){width:30px}.sinoe-table th:nth-child(4){width:13%}.sinoe-table th:nth-child(5){width:21%}.sinoe-table th:nth-child(6){width:23%}.sinoe-table th:nth-child(7){width:17%}.sinoe-table th:nth-child(8){width:82px}.sinoe-table th:last-child{width:45px}.sinoe-table td:nth-child(6){text-align:left}.sinoe-table abbr{text-decoration:none;cursor:help}.sinoe-table input[type=checkbox]{width:14px;height:14px;margin:0;accent-color:var(--primary);cursor:pointer}.sinoe-table tbody tr:hover{background:var(--paper)}.sinoe-number-link,.sinoe-summary-link{color:var(--ink)}.sinoe-table .is-unread .sinoe-number-link,.sinoe-table .is-unread .sinoe-summary-link{font-weight:600}.sinoe-number-link:hover,.sinoe-summary-link:hover{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}.sinoe-envelope{display:grid;place-items:center;width:27px;height:27px;border-radius:5px;background:transparent;color:var(--accent-text);margin:auto}.sinoe-envelope svg{width:19px;height:19px}.sinoe-envelope.is-read{color:var(--muted)}.sinoe-envelope:hover{background:var(--accent-soft);color:var(--accent-text)}.sinoe-open-documents{display:inline-flex;align-items:center;justify-content:center;gap:3px;color:var(--accent-text);padding:6px 3px;border-radius:5px}.sinoe-open-documents:hover{background:var(--accent-soft)}.sinoe-open-documents .icon{width:15px;height:15px}.sinoe-open-documents small{font-size:10px}
-@media(min-width:1200px){body:has(#sinoeModule:not([hidden])) .content{max-width:1160px;padding-left:32px;padding-right:32px}}
-@media(max-width:1000px){.sinoe-layout{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:680px){.sinoe-table-tools{padding:12px 18px}.sinoe-table td{padding:17px 7px}}
-
-/* Conexión más centrada, con el título alineado a su tarjeta. */
-@media(min-width:1000px){
- body:has(#sinoeModule:not([hidden]) .sinoe-connect) .content{max-width:980px;padding-left:28px;padding-right:28px}
- .sinoe-connect{padding:30px;gap:32px}
+.sinoe-panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 0;
+}
+.sinoe-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.sinoe-count {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.sinoe-count strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+.sinoe-count span {
+  font-size: 12px;
+  color: var(--accent-text);
+}
+.sinoe-layout {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  min-height: 430px;
+}
+.sinoe-folders {
+  border-right: 1px solid var(--line);
+  padding: 24px 12px;
+}
+.sinoe-folders h2 {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 0 10px 18px;
+}
+.sinoe-folders nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.sinoe-folder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 12px 10px;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 5px;
+  font-size: 12px;
+}
+.sinoe-folder > span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.sinoe-folder small {
+  font-size: 11px;
+}
+.sinoe-folder:hover,
+.sinoe-folder.is-active {
+  background: var(--hover);
+  color: var(--accent-text);
+}
+.sinoe-folder.is-active {
+  font-weight: 600;
+}
+.sinoe-main {
+  min-width: 0;
+}
+.sinoe-filters {
+  padding: 22px;
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid var(--soft-line);
+}
+.sinoe-filters .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+}
+.sinoe-notifications {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sinoe-notifications li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 23px 22px;
+  border-bottom: 1px solid var(--soft-line);
+}
+.sinoe-notifications li:hover {
+  background: var(--paper);
+}
+.sinoe-read-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex: none;
+  margin-top: 7px;
+}
+.sinoe-read-dot.is-read {
+  background: transparent;
+}
+.sinoe-notification-link {
+  flex: 1;
+  min-width: 0;
+}
+.sinoe-notification-link strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+.is-unread .sinoe-notification-link strong {
+  font-weight: 600;
+}
+.sinoe-notification-link:hover strong {
+  color: var(--accent-text);
+}
+.sinoe-notification-link span,
+.sinoe-notification-link small {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 7px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.sinoe-row-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  text-align: right;
+  flex: none;
+}
+.sinoe-row-meta time,
+.sinoe-row-meta > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.sinoe-row-meta > span:empty {
+  display: none;
+}
+.sinoe-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+.sinoe-heading > div {
+  min-width: 0;
+}
+.sinoe-heading > button {
+  flex: none;
+}
+.sinoe-heading h1 {
+  font-size: 30px;
+  margin: 18px 0 10px;
+  overflow-wrap: anywhere;
+}
+.sinoe-heading p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.sinoe-detail-top {
+  padding: 20px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.sinoe-read-state {
+  color: var(--accent-text);
+  font-size: 12px;
+}
+.sinoe-info {
+  margin: 0;
+  padding: 0 26px;
+}
+.sinoe-info > div {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 18px;
+  padding: 23px 0;
+  border-bottom: 1px solid var(--soft-line);
+}
+.sinoe-info dt {
+  font-size: 12px;
+  color: var(--muted);
+}
+.sinoe-info dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.sinoe-info a {
+  color: var(--accent-text);
+}
+.sinoe-info small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 5px;
+}
+.sinoe-doc-heading {
+  padding: 24px 26px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.sinoe-doc-heading h2 {
+  font-size: 14px;
+  font-weight: 600;
+}
+.sinoe-doc-heading h2 span {
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 8px;
+}
+.sinoe-documents {
+  list-style: none;
+  margin: 0;
+  padding: 0 26px 16px;
+}
+.sinoe-documents li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid var(--soft-line);
+}
+.sinoe-documents .icon {
+  color: var(--accent-text);
+}
+.sinoe-documents li > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+.sinoe-documents strong {
+  font-size: 13px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.sinoe-documents small {
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-top: 6px;
+}
+@media (max-width: 1000px) {
+  .sinoe-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sinoe-folders {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 18px;
+  }
+  .sinoe-folders nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .sinoe-folder {
+    width: auto;
+  }
+  .sinoe-folders h2 {
+    padding-bottom: 10px;
+  }
+}
+@media (max-width: 680px) {
+  .sinoe-toolbar {
+    padding: 18px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .sinoe-filters {
+    padding: 18px;
+    flex-direction: column;
+  }
+  .sinoe-filters select {
+    max-width: none;
+    width: 100%;
+  }
+  .sinoe-notifications li {
+    padding: 20px 18px;
+    flex-wrap: wrap;
+  }
+  .sinoe-notification-link {
+    flex-basis: calc(100% - 20px);
+  }
+  .sinoe-row-meta {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-left: 18px;
+  }
+  .sinoe-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .sinoe-info {
+    padding: 0 20px;
+  }
+  .sinoe-info > div {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .sinoe-detail-top,
+  .sinoe-doc-heading {
+    padding: 20px;
+  }
+  .sinoe-documents {
+    padding: 0 20px 15px;
+  }
+  .sinoe-documents li {
+    flex-wrap: wrap;
+  }
+  .sinoe-documents button {
+    margin-left: 34px;
+  }
 }
 
-.sinoe-folder-row{display:flex;align-items:center;gap:2px;min-width:0}
-.sinoe-folder-row .sinoe-folder{flex:1;min-width:0;gap:6px}
-.sinoe-folder-edit{flex:none;width:24px;height:30px;background:transparent;color:var(--muted);border-radius:4px;font-size:18px}
-.sinoe-folder-edit:hover{background:var(--hover);color:var(--accent-text)}
-#deleteSinoeFolder{margin-right:auto}
+/* Conexión antes de la bandeja y carpetas personales. */
+.sinoe-connect {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  padding: 38px;
+  gap: 50px;
+  align-items: start;
+}
+.sinoe-connect-intro {
+  padding: 8px 0;
+}
+.sinoe-connect-icon {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  color: var(--accent-text);
+  background: var(--accent-soft);
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+.sinoe-connect-intro h2 {
+  font: 600 27px/1.4 var(--font);
+  margin-bottom: 15px;
+}
+.sinoe-connect-intro p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted);
+  max-width: 320px;
+  margin-bottom: 22px;
+}
+.sinoe-connect-form {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+.sinoe-connect-form > label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: 13px;
+}
+.sinoe-connect-form input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 13px var(--font);
+  padding: 12px;
+}
+.sinoe-connect-form input:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+.sinoe-password {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sinoe-password button {
+  font-size: 11px;
+  color: var(--accent-text);
+  background: transparent;
+  padding: 8px 0;
+}
+.sinoe-mailbox-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.sinoe-mailbox-actions > .cases-secondary {
+  font-size: 12px;
+}
+.sinoe-folder-heading {
+  padding: 23px 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.sinoe-folder-heading h2 {
+  font-size: 15px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.sinoe-folder-heading > span {
+  font-size: 10px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.sinoe-move-label select {
+  font: 11px var(--font);
+  background: var(--surface);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 7px;
+  max-width: 155px;
+}
+.sinoe-move-label select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+#organizeNotificationDialog textarea {
+  width: 100%;
+  max-width: 100%;
+  resize: vertical;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink);
+  padding: 11px;
+  font: 13px/1.9 var(--font);
+}
+#organizeNotificationDialog textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+.sinoe-documents li > a {
+  flex: none;
+}
+.sinoe-count {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .sinoe-connect {
+    gap: 28px;
+    padding: 28px;
+  }
+  .sinoe-mailbox-actions {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .sinoe-folder-heading {
+    padding: 20px 18px 0;
+  }
+}
+@media (max-width: 680px) {
+  .sinoe-connect {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+  .sinoe-connect-intro h2 {
+    font-size: 25px;
+  }
+  .sinoe-connect-intro p {
+    max-width: none;
+  }
+  .sinoe-connect-icon {
+    margin-bottom: 17px;
+  }
+  .sinoe-mailbox-actions {
+    width: 100%;
+  }
+  .sinoe-row-meta {
+    align-items: center;
+  }
+  .sinoe-documents li > a:last-child {
+    margin-left: 0;
+  }
+  .sinoe-folder-heading {
+    align-items: flex-start;
+  }
+}
 
-.sinoe-folder-search{display:block;margin:10px 0 12px}
-.sinoe-folder-search input{width:100%;min-width:0;padding:9px 7px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--ink);font:12px var(--font)}
-.sinoe-folder-search input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.sinoe-folder-search-empty{padding:10px 7px;font-size:12px;line-height:1.6;color:var(--muted)}
+.sinoe-account-label {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+}
 
-.sinoe-password button{display:grid;place-items:center;width:36px;height:36px;flex:none;padding:8px;border-radius:5px;color:var(--muted)}.sinoe-password button .icon{width:20px;height:20px}.sinoe-password button:hover{background:var(--accent-soft);color:var(--accent-text)}
+/* Bandeja tabular siguiendo los campos de SINOE. */
+.sinoe-layout {
+  grid-template-columns: 210px minmax(0, 1fr);
+}
+.sinoe-table-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.sinoe-table-tools > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.sinoe-table-tools select {
+  background: var(--surface);
+  color: var(--ink);
+  font: 12px var(--font);
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  max-width: 180px;
+}
+.sinoe-table-tools select:disabled {
+  opacity: 0.45;
+}
+.sinoe-table-wrap {
+  overflow-x: auto;
+}
+.sinoe-table {
+  width: 100%;
+  min-width: 810px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: center;
+}
+.sinoe-table th {
+  background: var(--header);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.6;
+  padding: 12px 6px;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--soft-line);
+}
+.sinoe-table td {
+  padding: 20px 7px;
+  font-size: 12px;
+  line-height: 1.7;
+  border-bottom: 1px solid var(--soft-line);
+  border-right: 1px solid var(--soft-line);
+  color: var(--muted);
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+.sinoe-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.sinoe-table th:last-child,
+.sinoe-table td:last-child {
+  border-right: 0;
+}
+.sinoe-table th:first-child {
+  width: 30px;
+}
+.sinoe-table th:nth-child(2) {
+  width: 35px;
+}
+.sinoe-table th:nth-child(3) {
+  width: 30px;
+}
+.sinoe-table th:nth-child(4) {
+  width: 13%;
+}
+.sinoe-table th:nth-child(5) {
+  width: 21%;
+}
+.sinoe-table th:nth-child(6) {
+  width: 23%;
+}
+.sinoe-table th:nth-child(7) {
+  width: 17%;
+}
+.sinoe-table th:nth-child(8) {
+  width: 82px;
+}
+.sinoe-table th:last-child {
+  width: 45px;
+}
+.sinoe-table td:nth-child(6) {
+  text-align: left;
+}
+.sinoe-table abbr {
+  text-decoration: none;
+  cursor: help;
+}
+.sinoe-table input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+.sinoe-table tbody tr:hover {
+  background: var(--paper);
+}
+.sinoe-number-link,
+.sinoe-summary-link {
+  color: var(--ink);
+}
+.sinoe-table .is-unread .sinoe-number-link,
+.sinoe-table .is-unread .sinoe-summary-link {
+  font-weight: 600;
+}
+.sinoe-number-link:hover,
+.sinoe-summary-link:hover {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sinoe-envelope {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--accent-text);
+  margin: auto;
+}
+.sinoe-envelope svg {
+  width: 19px;
+  height: 19px;
+}
+.sinoe-envelope.is-read {
+  color: var(--muted);
+}
+.sinoe-envelope:hover {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.sinoe-open-documents {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--accent-text);
+  padding: 6px 3px;
+  border-radius: 5px;
+}
+.sinoe-open-documents:hover {
+  background: var(--accent-soft);
+}
+.sinoe-open-documents .icon {
+  width: 15px;
+  height: 15px;
+}
+.sinoe-open-documents small {
+  font-size: 10px;
+}
+@media (min-width: 1200px) {
+  body:has(#sinoeModule:not([hidden])) .content {
+    max-width: 1160px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+@media (max-width: 1000px) {
+  .sinoe-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 680px) {
+  .sinoe-table-tools {
+    padding: 12px 18px;
+  }
+  .sinoe-table td {
+    padding: 17px 7px;
+  }
+}
 
-.sinoe-main{display:flex;flex-direction:column}
-.sinoe-main>.cases-pagination{margin-top:auto;flex:none}
-.sinoe-layout:has(.sinoe-main>.clients-empty){min-height:350px}
-.sinoe-main>.clients-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:35px 24px}
+/* Conexión más centrada, con el título alineado a su tarjeta. */
+@media (min-width: 1000px) {
+  body:has(#sinoeModule:not([hidden]) .sinoe-connect) .content {
+    max-width: 980px;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+  .sinoe-connect {
+    padding: 30px;
+    gap: 32px;
+  }
+}
+
+.sinoe-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+.sinoe-folder-row .sinoe-folder {
+  flex: 1;
+  min-width: 0;
+  gap: 6px;
+}
+.sinoe-folder-edit {
+  flex: none;
+  width: 24px;
+  height: 30px;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 4px;
+  font-size: 18px;
+}
+.sinoe-folder-edit:hover {
+  background: var(--hover);
+  color: var(--accent-text);
+}
+#deleteSinoeFolder {
+  margin-right: auto;
+}
+
+.sinoe-folder-search {
+  display: block;
+  margin: 10px 0 12px;
+}
+.sinoe-folder-search input {
+  width: 100%;
+  min-width: 0;
+  padding: 9px 7px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 12px var(--font);
+}
+.sinoe-folder-search input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.sinoe-folder-search-empty {
+  padding: 10px 7px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.sinoe-password button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  padding: 8px;
+  border-radius: 5px;
+  color: var(--muted);
+}
+.sinoe-password button .icon {
+  width: 20px;
+  height: 20px;
+}
+.sinoe-password button:hover {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.sinoe-main {
+  display: flex;
+  flex-direction: column;
+}
+.sinoe-main > .cases-pagination {
+  margin-top: auto;
+  flex: none;
+}
+.sinoe-layout:has(.sinoe-main > .clients-empty) {
+  min-height: 350px;
+}
+.sinoe-main > .clients-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 24px;
+}

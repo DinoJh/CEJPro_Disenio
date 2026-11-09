@@ -1,25 +1,151 @@
-/* Registro interno de honorarios en soles y dólares. Importes almacenados en céntimos. */
-window.CejProBillingData=(()=>{
- const key='cejpro.billing.v1',limit=100000000000;
- const money=(n,currency='PEN')=>(currency==='USD'?'US$ ':'S/ ')+(n/100).toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2});
- const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;};
- function date(v){if(typeof v!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(v))return false;const d=new Date(v+'T12:00:00');return !isNaN(d)&&d.getFullYear()===Number(v.slice(0,4))&&d.getMonth()+1===Number(v.slice(5,7))&&d.getDate()===Number(v.slice(8,10));}
- function cents(v){const s=String(v).trim().replace(',','.');if(!/^\d+(?:\.\d{1,2})?$/.test(s))return null;const [whole,part='']=s.split('.'),n=Number(whole)*100+Number(part.padEnd(2,'0'));return Number.isSafeInteger(n)&&n>0&&n<=limit?n:null;}
- const amount=n=>Number.isSafeInteger(n)&&n>0&&n<=limit;
- const paid=c=>c.payments.reduce((sum,p)=>sum+p.amount,0);
- const balance=c=>c.amount-paid(c);
- function status(c){if(balance(c)===0)return {label:'Cancelado',kind:'paid'};if(c.dueDate&&c.dueDate<today())return {label:'Vencido',kind:'overdue'};return paid(c)>0?{label:'Pago parcial',kind:'partial'}:{label:'Pendiente',kind:'pending'};}
- function valid(items){const ids=new Set(),paymentIds=new Set();return Array.isArray(items)&&items.every(c=>{if(!c||typeof c.id!=='string'||!c.id||ids.has(c.id)||typeof c.clientId!=='string'||!c.clientId||typeof c.concept!=='string'||!c.concept.trim()||c.concept.length>180||!amount(c.amount)||(c.currency!==undefined&&!['PEN','USD'].includes(c.currency))||!date(c.date)||!(c.dueDate===''||date(c.dueDate))||typeof c.caseId!=='string'||!Array.isArray(c.payments))return false;ids.add(c.id);return c.payments.every(p=>{if(!p||typeof p.id!=='string'||!p.id||paymentIds.has(p.id)||!amount(p.amount)||!date(p.date)||typeof p.method!=='string'||typeof p.reference!=='string'||p.reference.length>180)return false;paymentIds.add(p.id);return true;})&&paid(c)<=c.amount;});}
- let items=[];try{const data=JSON.parse(window.CejProStorage.getItem(key));if(valid(data))items=data.map(c=>({...c,currency:c.currency||'PEN'}));}catch(_){}
- function persist(){try{window.CejProStorage.setItem(key,JSON.stringify(items));return true;}catch(_){return false;}}
- const list=id=>items.filter(c=>c.clientId===id).map(c=>({...c,payments:c.payments.map(p=>({...p}))}));
- function summary(id,currency='PEN'){const all=list(id).filter(c=>c.currency===currency),total=all.reduce((s,c)=>s+c.amount,0),collected=all.reduce((s,c)=>s+paid(c),0);return {currency,count:all.length,total,paid:collected,balance:total-collected,overdue:all.some(c=>status(c).kind==='overdue')};}
- function summaries(id){const currencies=['PEN','USD'].filter(currency=>list(id).some(c=>c.currency===currency));return (currencies.length?currencies:['PEN']).map(currency=>summary(id,currency));}
- function saveCharge(clientId,input){if(!window.CejProWorkspaces.canEdit())return {ok:false,error:'Solo lectura.'};const existing=items.find(c=>c.id===input.id&&c.clientId===clientId);if(input.id&&!existing)return {ok:false,error:'No encontramos este cobro.'};const currency=input.currency||existing?.currency||'PEN';if(!['PEN','USD'].includes(currency))return {ok:false,error:'Selecciona soles o dólares.'};if(existing?.payments.length&&currency!==existing.currency)return {ok:false,error:'No puedes cambiar la moneda de un cobro con pagos registrados.'};const value=cents(input.amount);if(value===null)return {ok:false,error:'Ingresa un importe mayor a cero, con hasta dos decimales.'};if(!input.concept.trim())return {ok:false,error:'Escribe el concepto del cobro.'};if(!date(input.date)||(input.dueDate&&!date(input.dueDate)))return {ok:false,error:'Revisa las fechas del cobro.'};if(input.dueDate&&input.dueDate<input.date)return {ok:false,error:'El vencimiento no puede ser anterior a la fecha del cobro.'};if(existing&&value<paid(existing))return {ok:false,error:'El importe no puede ser menor al total ya pagado.'};const charge={id:existing?.id||'charge-'+crypto.randomUUID(),clientId,currency,concept:input.concept.trim().slice(0,180),amount:value,date:input.date,dueDate:input.dueDate||'',caseId:input.caseId||'',payments:existing?.payments||[]};if(existing)items[items.indexOf(existing)]=charge;else items.unshift(charge);return {ok:true,saved:persist(),id:charge.id};}
- function addPayment(clientId,id,input){if(!window.CejProWorkspaces.canEdit())return {ok:false,error:'Solo lectura.'};const c=items.find(c=>c.id===id&&c.clientId===clientId),value=cents(input.amount);if(!c)return {ok:false,error:'No encontramos este cobro.'};if(value===null)return {ok:false,error:'Ingresa un pago mayor a cero, con hasta dos decimales.'};if(value>balance(c))return {ok:false,error:'El pago no puede superar el saldo pendiente.'};if(!date(input.date))return {ok:false,error:'Ingresa la fecha del pago.'};c.payments.push({id:'payment-'+crypto.randomUUID(),amount:value,date:input.date,method:input.method||'Otro',reference:String(input.reference||'').trim().slice(0,180)});return {ok:true,saved:persist()};}
- function removePayment(clientId,id,paymentId){if(!window.CejProWorkspaces.canEdit())return {ok:false,error:'Solo lectura.'};const c=items.find(c=>c.id===id&&c.clientId===clientId),p=c?.payments.find(p=>p.id===paymentId);if(!p)return {ok:false,error:'No encontramos este pago.'};c.payments=c.payments.filter(x=>x.id!==paymentId);return {ok:true,saved:persist()};}
- function editPayment(clientId,id,paymentId,input){if(!window.CejProWorkspaces.canEdit())return {ok:false,error:'Solo lectura.'};const c=items.find(c=>c.id===id&&c.clientId===clientId),p=c?.payments.find(p=>p.id===paymentId),value=cents(input.amount);if(!p)return {ok:false,error:'No encontramos este pago.'};if(value===null)return {ok:false,error:'Ingresa un importe mayor a cero.'};if(value>balance(c)+p.amount)return {ok:false,error:'El pago no puede superar el saldo del cobro.'};if(!date(input.date))return {ok:false,error:'Revisa la fecha del pago.'};Object.assign(p,{amount:value,date:input.date,method:input.method||'Otro',reference:String(input.reference||'').trim().slice(0,180)});return {ok:true,saved:persist()};}
- function removeCharge(clientId,id){if(!window.CejProWorkspaces.canEdit())return {ok:false,error:'Solo lectura.'};if(!items.some(c=>c.id===id&&c.clientId===clientId))return {ok:false,error:'No encontramos este cobro.'};items=items.filter(c=>!(c.id===id&&c.clientId===clientId));return {ok:true,saved:persist()};}
- function reload(){const data=JSON.parse(window.CejProStorage.getItem(key)||'[]');if(valid(data))items=data.map(c=>({...c,currency:c.currency||'PEN'}));}
- return {reload,money,today,cents,paid,balance,status,list,summary,summaries,saveCharge,addPayment,removePayment,editPayment,removeCharge};
+/* Importes en céntimos y compatibilidad con pagos almacenados en cejpro.billing.v1.
+ * La interfaz vigente registra pagos nuevos mediante received-payments.js.
+ */
+window.CejProBillingData = (() => {
+  const key = "cejpro.billing.v1",
+    limit = 100000000000;
+  const money = (n, currency = "PEN") =>
+    (currency === "USD" ? "US$ " : "S/ ") +
+    (n / 100).toLocaleString("es-PE", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  const today = () => {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  };
+  function date(v) {
+    if (typeof v !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(v)) return false;
+    const d = new Date(v + "T12:00:00");
+    return (
+      !isNaN(d) &&
+      d.getFullYear() === Number(v.slice(0, 4)) &&
+      d.getMonth() + 1 === Number(v.slice(5, 7)) &&
+      d.getDate() === Number(v.slice(8, 10))
+    );
+  }
+  function cents(v) {
+    const s = String(v).trim().replace(",", ".");
+    if (!/^\d+(?:\.\d{1,2})?$/.test(s)) return null;
+    const [whole, part = ""] = s.split("."),
+      n = Number(whole) * 100 + Number(part.padEnd(2, "0"));
+    return Number.isSafeInteger(n) && n > 0 && n <= limit ? n : null;
+  }
+  const amount = (n) => Number.isSafeInteger(n) && n > 0 && n <= limit;
+  const paid = (c) => c.payments.reduce((sum, p) => sum + p.amount, 0);
+  const balance = (c) => c.amount - paid(c);
+  function valid(items) {
+    const ids = new Set(),
+      paymentIds = new Set();
+    return (
+      Array.isArray(items) &&
+      items.every((c) => {
+        if (
+          !c ||
+          typeof c.id !== "string" ||
+          !c.id ||
+          ids.has(c.id) ||
+          typeof c.clientId !== "string" ||
+          !c.clientId ||
+          typeof c.concept !== "string" ||
+          !c.concept.trim() ||
+          c.concept.length > 180 ||
+          !amount(c.amount) ||
+          (c.currency !== undefined && !["PEN", "USD"].includes(c.currency)) ||
+          !date(c.date) ||
+          !(c.dueDate === "" || date(c.dueDate)) ||
+          typeof c.caseId !== "string" ||
+          !Array.isArray(c.payments)
+        )
+          return false;
+        ids.add(c.id);
+        return (
+          c.payments.every((p) => {
+            if (
+              !p ||
+              typeof p.id !== "string" ||
+              !p.id ||
+              paymentIds.has(p.id) ||
+              !amount(p.amount) ||
+              !date(p.date) ||
+              typeof p.method !== "string" ||
+              typeof p.reference !== "string" ||
+              p.reference.length > 180
+            )
+              return false;
+            paymentIds.add(p.id);
+            return true;
+          }) && paid(c) <= c.amount
+        );
+      })
+    );
+  }
+  let items = [];
+  try {
+    const data = JSON.parse(window.CejProStorage.getItem(key));
+    if (valid(data))
+      items = data.map((c) => ({ ...c, currency: c.currency || "PEN" }));
+  } catch (_) {}
+  function persist() {
+    try {
+      window.CejProStorage.setItem(key, JSON.stringify(items));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+  const list = (id) =>
+    items
+      .filter((c) => c.clientId === id)
+      .map((c) => ({ ...c, payments: c.payments.map((p) => ({ ...p })) }));
+  function removePayment(clientId, id, paymentId) {
+    if (!window.CejProWorkspaces.canEdit())
+      return { ok: false, error: "Solo lectura." };
+    const c = items.find((c) => c.id === id && c.clientId === clientId),
+      p = c?.payments.find((p) => p.id === paymentId);
+    if (!p) return { ok: false, error: "No encontramos este pago." };
+    c.payments = c.payments.filter((x) => x.id !== paymentId);
+    return { ok: true, saved: persist() };
+  }
+  function editPayment(clientId, id, paymentId, input) {
+    if (!window.CejProWorkspaces.canEdit())
+      return { ok: false, error: "Solo lectura." };
+    const c = items.find((c) => c.id === id && c.clientId === clientId),
+      p = c?.payments.find((p) => p.id === paymentId),
+      value = cents(input.amount);
+    if (!p) return { ok: false, error: "No encontramos este pago." };
+    if (value === null)
+      return { ok: false, error: "Ingresa un importe mayor a cero." };
+    if (value > balance(c) + p.amount)
+      return {
+        ok: false,
+        error: "El pago no puede superar el saldo del cobro.",
+      };
+    if (!date(input.date))
+      return { ok: false, error: "Revisa la fecha del pago." };
+    Object.assign(p, {
+      amount: value,
+      date: input.date,
+      method: input.method || "Otro",
+      reference: String(input.reference || "")
+        .trim()
+        .slice(0, 180),
+    });
+    return { ok: true, saved: persist() };
+  }
+  function reload() {
+    const data = JSON.parse(window.CejProStorage.getItem(key) || "[]");
+    if (valid(data))
+      items = data.map((c) => ({ ...c, currency: c.currency || "PEN" }));
+  }
+  return {
+    reload,
+    money,
+    today,
+    cents,
+    paid,
+    list,
+    removePayment,
+    editPayment,
+  };
 })();

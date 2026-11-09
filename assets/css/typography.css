@@ -1,7 +1,22 @@
 /* Títulos compactos de interfaz; los documentos mantienen su tipografía. */
-.page-heading h1,.detail-heading h1,.client-heading h1,.team-heading h1,.writing-heading h1,.sinoe-heading h1{
- font-family:var(--font);font-size:28px;font-weight:700;line-height:1.3;letter-spacing:-.45px;
+.page-heading h1,
+.detail-heading h1,
+.client-heading h1,
+.writing-heading h1,
+.sinoe-heading h1 {
+  font-family: var(--font);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.45px;
 }
-@media(max-width:760px){
- .page-heading h1,.detail-heading h1,.client-heading h1,.team-heading h1,.writing-heading h1,.sinoe-heading h1{font-size:25px;letter-spacing:-.3px}
+@media (max-width: 760px) {
+  .page-heading h1,
+  .detail-heading h1,
+  .client-heading h1,
+  .writing-heading h1,
+  .sinoe-heading h1 {
+    font-size: 25px;
+    letter-spacing: -0.3px;
+  }
 }

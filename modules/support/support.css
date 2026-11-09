@@ -1,20 +1,182 @@
-.support-contact,.support-faq{background:var(--surface);border:1px solid var(--line);border-radius:12px}
-.support-contact{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:26px;margin-bottom:20px}
-.support-contact-heading{display:flex;align-items:center;gap:14px;min-width:0}.support-whatsapp-icon{display:grid;place-items:center;width:42px;height:42px;padding:10px;flex:none;border-radius:12px;background:var(--accent-soft);color:var(--accent-text)}
-.support-contact h2{font-size:16px;font-weight:600}.support-contact p{font-size:14px;color:var(--muted);margin-top:7px}.support-contact>.cases-primary{font-size:12px;flex:none}
-.support-faq{padding:24px 26px 6px}.support-faq>h2{font-size:15px;font-weight:600;margin-bottom:12px}.support-faq details{border-top:1px solid var(--line);padding:17px 0}.support-faq details:first-of-type{border-top:0}.support-faq summary{cursor:pointer;font-size:14px;font-weight:400;line-height:1.6;color:var(--ink);padding-right:10px}.support-faq details p{font-size:13px;color:var(--muted);line-height:1.8;padding:10px 0 0 17px;max-width:560px}
-@media(max-width:600px){.support-contact{align-items:flex-start;flex-direction:column;padding:22px;gap:20px}.support-contact>.cases-primary{width:100%}.support-faq{padding:21px 21px 4px}}
+.support-contact,
+.support-faq {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.support-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 26px;
+  margin-bottom: 20px;
+}
+.support-contact-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.support-whatsapp-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.support-contact h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.support-contact p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+.support-contact > .cases-primary {
+  font-size: 12px;
+  flex: none;
+}
+.support-faq {
+  padding: 24px 26px 6px;
+}
+.support-faq > h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.support-faq details {
+  border-top: 1px solid var(--line);
+  padding: 17px 0;
+}
+.support-faq details:first-of-type {
+  border-top: 0;
+}
+.support-faq summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  padding-right: 10px;
+}
+.support-faq details p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  padding: 10px 0 0 17px;
+  max-width: 560px;
+}
+@media (max-width: 600px) {
+  .support-contact {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 22px;
+    gap: 20px;
+  }
+  .support-contact > .cases-primary {
+    width: 100%;
+  }
+  .support-faq {
+    padding: 21px 21px 4px;
+  }
+}
 
-#supportWhatsApp[aria-disabled="true"]{opacity:.65;cursor:default}
+#supportWhatsApp[aria-disabled="true"] {
+  opacity: 0.65;
+  cursor: default;
+}
 
-.support-faq{padding-bottom:0}
-.support-faq-tools{display:flex;align-items:stretch;gap:10px;margin:20px 0}
-.support-faq-tools .cases-search{min-width:0;flex:1}.support-faq-tools .icon{width:17px;height:17px;color:var(--muted)}
-.support-module-filter{width:170px;flex:none}.support-module-filter select{width:100%;height:100%;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:12px var(--font)}
-.support-faq-group h3{font-size:12px;font-weight:500;color:var(--accent-text);padding:12px 0 5px}
-.support-faq-group+.support-faq-group{margin-top:8px}
-.support-faq-group details{padding:13px 0}
-.support-pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:16px;padding:17px 0;color:var(--muted);font-size:12px}
-.support-pagination nav{display:flex;gap:5px}.support-pagination button{width:30px;height:30px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:5px;font:12px var(--font)}
-.support-pagination button:hover{background:var(--hover)}.support-pagination button[aria-current]{background:var(--accent-soft);color:var(--accent-text);border-color:var(--accent-border)}
-@media(max-width:520px){.support-faq-tools{flex-direction:column}.support-module-filter{width:100%;height:40px}.support-pagination{flex-wrap:wrap}}
+.support-faq {
+  padding-bottom: 0;
+}
+.support-faq-tools {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  margin: 20px 0;
+}
+.support-faq-tools .cases-search {
+  min-width: 0;
+  flex: 1;
+}
+.support-faq-tools .icon {
+  width: 17px;
+  height: 17px;
+  color: var(--muted);
+}
+.support-module-filter {
+  width: 170px;
+  flex: none;
+}
+.support-module-filter select {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 12px var(--font);
+}
+.support-faq-group h3 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent-text);
+  padding: 12px 0 5px;
+}
+.support-faq-group + .support-faq-group {
+  margin-top: 8px;
+}
+.support-faq-group details {
+  padding: 13px 0;
+}
+.support-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--line);
+  margin-top: 16px;
+  padding: 17px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.support-pagination nav {
+  display: flex;
+  gap: 5px;
+}
+.support-pagination button {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font: 12px var(--font);
+}
+.support-pagination button:hover {
+  background: var(--hover);
+}
+.support-pagination button[aria-current] {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border-color: var(--accent-border);
+}
+@media (max-width: 520px) {
+  .support-faq-tools {
+    flex-direction: column;
+  }
+  .support-module-filter {
+    width: 100%;
+    height: 40px;
+  }
+  .support-pagination {
+    flex-wrap: wrap;
+  }
+}

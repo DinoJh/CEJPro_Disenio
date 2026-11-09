@@ -1,10 +1,59 @@
 /* Interacciones compartidas de la marca CEJ PRO. */
-.cases-primary,.cal-primary{background:var(--primary);color:var(--primary-ink)}
-.cases-primary:hover,.cal-primary:hover{background:var(--primary-hover);opacity:1;box-shadow:0 3px 12px #a3294026}
-.cases-secondary:hover,.cal-secondary:hover,.topbar-action:hover,.cases-icon-button:hover,.cal-icon-btn:hover,.cal-today:hover,.cases-new-folder:hover{background:var(--accent-soft);border-color:var(--accent-border);color:var(--accent-text)}
-.cases-row-action:hover,.cases-open-action:hover,.detail-text-button:hover{background:var(--accent-soft);color:var(--accent-text)}
-.cal-date.is-today{background:var(--primary);color:#fff}
-.cases-pagination button:not(:disabled):hover{background:var(--accent-soft);border-color:var(--accent-border);color:var(--accent-text)}
-.theme-option:hover{border-color:var(--accent-border)}
-.cal-top{justify-content:flex-end}
-@media(prefers-reduced-motion:no-preference){.cases-primary,.cal-primary,.cases-secondary,.cal-secondary,.topbar-action,.nav-item,.theme-option{transition:background-color .15s,border-color .15s,color .15s,box-shadow .15s}}
+.cases-primary,
+.cal-primary {
+  background: var(--primary);
+  color: var(--primary-ink);
+}
+.cases-primary:hover,
+.cal-primary:hover {
+  background: var(--primary-hover);
+  opacity: 1;
+  box-shadow: 0 3px 12px #a3294026;
+}
+.cases-secondary:hover,
+.cal-secondary:hover,
+.topbar-action:hover,
+.cases-icon-button:hover,
+.cal-icon-btn:hover,
+.cal-today:hover,
+.cases-new-folder:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+  color: var(--accent-text);
+}
+.cases-row-action:hover,
+.cases-open-action:hover,
+.detail-text-button:hover {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.cal-date.is-today {
+  background: var(--primary);
+  color: #fff;
+}
+.cases-pagination button:not(:disabled):hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+  color: var(--accent-text);
+}
+.theme-option:hover {
+  border-color: var(--accent-border);
+}
+.cal-top {
+  justify-content: flex-end;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cases-primary,
+  .cal-primary,
+  .cases-secondary,
+  .cal-secondary,
+  .topbar-action,
+  .nav-item,
+  .theme-option {
+    transition:
+      background-color 0.15s,
+      border-color 0.15s,
+      color 0.15s,
+      box-shadow 0.15s;
+  }
+}
